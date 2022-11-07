@@ -17,7 +17,7 @@ p {
 }
 button {
   color: rgb(255, 255, 255);
-  background-color: rgb(0, 117, 250);
+  background-color: rgb(78, 245, 92);
   text-shadow: 2px 2px 1px #0043fc;
   position: absolute;
   font-size: x-large;
@@ -39,6 +39,7 @@ button {
 }
 
 button:hover {
+  transition: 0.5s;
   background-color: rgb(0, 90, 194);
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.14),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
