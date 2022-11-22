@@ -21,13 +21,12 @@ export class PctLoginComponent implements OnInit {
   }
 
   loginHandler() {
-    // TODO
-    // 1. set "current-user" to the userName in localStorage
-    // 2. call this.navigateToMainMenu() to leave the login page
-    // 3. if userName is an empty string show an alert("Your message")
-  }
-
-  navigateToMainMenu() {
-    this.router.navigate(['/']);
+    if (this.userName.length > 0) {
+      localStorage['current-user'] = this.userName;
+      this.router.navigate(['/']);
+      alert('Hallo' + ' ' + this.userName);
+    } else {
+      alert('Bitte gebe einen Namen ein!');
+    }
   }
 }
