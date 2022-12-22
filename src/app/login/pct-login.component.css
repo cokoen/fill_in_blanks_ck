@@ -52,12 +52,12 @@ button:active {
 }
 
 input {
-  background-color: rgb(91, 196, 169);
+  background-color: rgb(91, 98, 196);
   width: 50%;
   position: absolute;
   top: 2.5cm;
   left: 25%;
-  height: 3%;
+  height: 5%;
   font-family: sans-serif;
   font-size: 130%;
   color: rgb(0, 0, 0);
@@ -74,4 +74,5 @@ img {
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  border-radius: 15px;
 }

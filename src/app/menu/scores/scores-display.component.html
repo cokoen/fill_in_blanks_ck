@@ -1,1 +1,18 @@
-TODO highscores
+<p>Bestenliste</p>
+<a routerLink="..">
+  <button class="back" type="button">❌</button>
+</a>
+<div>
+  <table>
+    <thead class="head">
+      <th>Name</th>
+      <th class="score">Score</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let names of scores">
+        <td>{{ names.name }}</td>
+        <td class="score">{{ names.points }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

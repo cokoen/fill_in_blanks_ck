@@ -24,7 +24,6 @@ export class PctLoginComponent implements OnInit {
     if (this.userName.length > 0) {
       localStorage['current-user'] = this.userName;
       this.router.navigate(['/']);
-      alert('Hallo' + ' ' + this.userName);
     } else {
       alert('Bitte gebe einen Namen ein!');
     }

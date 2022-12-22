@@ -9,13 +9,17 @@ import { MainMenuComponent } from './menu/main-menu/main-menu.component';
 import { ScannerComponent } from './menu/scan/scanner.component';
 import { ScoresDisplayComponent } from './menu/scores/scores-display.component';
 import { CreateCodeComponent } from './menu/create/create-code.component';
+import { QRCodeModule } from 'angularx-qrcode';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    QRCodeModule,
     NgxScannerQrcodeModule,
   ],
   declarations: [

@@ -12,6 +12,7 @@ export class MainMenuComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
-    // TODO
+    delete localStorage['current-user'];
+    this.router.navigate(['/login']);
   }
 }

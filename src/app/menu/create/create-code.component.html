@@ -1,1 +1,41 @@
-TODO create
+<div class="head"><p>QR Code erzeugen</p></div>
+
+<div class="password">
+  Passwort:<input
+    [(ngModel)]="password"
+    type="text"
+    placeholder="Passwort..."
+    class="passwort"
+  />
+</div>
+
+<div class="beschreibung">
+  Beschreibung:<input
+    [(ngModel)]="description"
+    type="text"
+    placeholder="Beschreibung..."
+    class="beschreibung"
+  />
+</div>
+
+<div class="punkte">
+  Punkte:
+  <input [(ngModel)]="points" type="number" class="punkte" />
+</div>
+
+<div class="button">
+  <button (click)="generate()">Erzeuge QR Code</button>
+</div>
+
+<div *ngIf="jwt.length > 0">
+  <qrcode
+    (qrCodeURL)="onChangeURL($event)"
+    [qrdata]="jwt"
+    [width]="440"
+    [errorCorrectionLevel]="'M'"
+  ></qrcode>
+  <a [href]="dlLink" download="qrcode">Download</a>
+</div>
+<a routerLink="..">
+  <button class="back" type="button">❌</button>
+</a>

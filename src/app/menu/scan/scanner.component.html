@@ -15,12 +15,13 @@
     [class.btn-warning]="action.isStart"
     [disabled]="action.isLoading"
   >
-    <img
-      *ngIf="!action.isStart"
-      src="https://img.icons8.com/ios/50/000000/no-camera--v2.png"
-      width="30px"
-    />
-    Kamera starten
+    <div class="camera">
+      <img
+        *ngIf="!action.isStart"
+        src="https://img.icons8.com/ios/50/000000/no-camera--v2.png"
+        width="30px"
+      />
+    </div>
   </button>
 </div>
 

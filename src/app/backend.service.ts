@@ -75,9 +75,19 @@ export class BackendService {
         .toPromise();
       return JSON.parse(callResult);
     } else {
-      // TODO
+      const byName: Record<string, number> = {};
+      for (const event of this.localScanEvents) {
+        byName[event.groupName] = (byName[event.groupName] || 0) + event.points;
+      }
 
-      return [];
+      const highscores: HighScoreEntry[] = Object.keys(byName).map((name) => ({
+        name,
+        points: byName[name],
+      }));
+
+      highscores.sort((a, b) => b.points - a.points);
+
+      return highscores;
     }
   }
 
@@ -98,14 +108,43 @@ export class BackendService {
 
       return JSON.parse(callResult);
     } else {
+      // in dev mode no verification is done
+      // in production the verification will happen in the server
+      // for size reasons the jwt does not contain anything but the id
+
       const result: ScanResult = {
         qrCodeFound: null,
         scannedFirst: false,
       };
 
-      // TODO
+      try {
+        const claims = jose.decodeJwt(jwtScanned);
+        const id = Number(claims.jti);
 
-      this.storeLocalData();
+        const localCode = this.localCodes.find((lc) => lc.id === id);
+
+        if (localCode != null) {
+          result.qrCodeFound = localCode;
+
+          const scannedBefore = this.localScanEvents.find(
+            (le) => le.qrId === id && le.groupName == groupName
+          );
+          if (scannedBefore == null) {
+            this.localScanEvents.push({
+              groupName,
+              points: localCode.points,
+              qrId: localCode.id,
+            });
+
+            this.storeLocalData();
+
+            result.scannedFirst = true;
+          }
+        }
+      } catch (e) {
+        console.log('Bad QR Code', e);
+      }
+
       return result;
     }
   }
@@ -131,8 +170,12 @@ export class BackendService {
 
       return JSON.parse(callResult);
     } else {
-      const id = 42; // TODO
-
+      this.localCodes.push({
+        id: this.localCodes.length + 1,
+        description,
+        points,
+      });
+      const id = this.localCodes.length;
       const jwt = await new jose.SignJWT({
         jti: id + '',
       })

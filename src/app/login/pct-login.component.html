@@ -1,19 +1,13 @@
-LOGIN TODO
-<br />
-<!---- <input type="text" /> -->
+<body>
+  <input
+    [(ngModel)]="userName"
+    type="text"
+    id="Textfield"
+    name="tfield"
+    placeholder="Benutzername"
+  />
 
-<input
-  [(ngModel)]="userName"
-  type="text"
-  id="Textfield"
-  name="tfield"
-  placeholder="Benutzername"
-/>
+  <img src="https://avatars.githubusercontent.com/u/114487568?v=4" />
 
-You need to setup an input bound to userName. <br />
-You need to setup a button with clickbound to loginhandler() <br />
-There already is some css, but you might want to make your own style<br />
-
-<img [src]="pctlogo" />
-
-<button (click)="loginHandler()">Login</button>
+  <button (click)="loginHandler()">Login</button>
+</body>

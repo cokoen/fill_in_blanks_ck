@@ -14,7 +14,23 @@ export class ScannerComponent implements OnInit {
   async onData(data: any) {
     console.log(data);
 
-    // TODO
+    const result = await this.backend.addPoints(
+      data,
+      localStorage['current-user']
+    );
+
+    if (result.qrCodeFound == null) {
+      // Do nothing, this happens a lot
+    } else if (result.scannedFirst) {
+      alert(
+        result.qrCodeFound.description +
+          '\nDu hast ' +
+          result.qrCodeFound.points +
+          ' Punkte erhalten!'
+      );
+    } else {
+      alert('Leider gibt es für mehrfache Scans keine Punkte');
+    }
   }
 
   onError(e: any) {
